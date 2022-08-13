@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Gevora Hotel</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Volkhov">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="static/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top"><img src="static/assets/img/navbar-logo.svg" alt="..." /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#services">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Galeria</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">¿Quienes Somos?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#noticias">Noticias</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contactenos</a></li>
+                        {% if not current_user.is_authenticated %}
+                            <li class="nav-item"><a href="/login"><button class="btn btn-outline-danger" type="submit" style="font-family: Montserrat"><Strong>Iniciar Sesion</Strong></button></a></li>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                            <!-- <li class="nav-item"><a href="/logout"><button class="btn btn-outline-danger" type="submit" style="font-family: Montserrat"><Strong>{{ current_user.nombre }}</Strong></button></a></li> -->
+                            <!-- <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesion: {{ current_user.nombre }}</a></li> -->
+                            <div class="dropdown text-end">
+                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <img src="{{ url_for('static', filename='assets/user.svg') }}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                </a>
+                                <ul class="dropdown-menu text-small">
+                                    <li><p class="dropdown-item"><Strong>Hola, {{ current_user.nombre }}</Strong></p></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <!-- <li><a class="dropdown-item" href="#">Mis Reservas</a></li> -->
+                                    {% if current_user.rol == "1" %}
+                                        <li><a class="dropdown-item" href="/superAdministrador">Super Admin</a></li>
+                                    {% endif %}
+                                    {% if current_user.rol == "2" %}
+                                        <li><a class="dropdown-item" href="/administrador">Administrar</a></li>
+                                    {% endif %}
+                                    {% if current_user.rol == "3" %}
+                                        <li><a class="dropdown-item" href="#">Mis Reservas</a></li>
+                                    {% endif %}
+                                    <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
+                                    <!-- <li><hr class="dropdown-divider"></li> -->
+                                    <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+                                </ul>
+                              </div>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading text-uppercase" >El mejor Alojamiento para tus vacaciones.</div>
+                <div class="masthead-heading" >Descansa y sientete como en casa.</div>
+                <div class="masthead-subheading2" >Novedoso rascacielo hotelero con 51 pisos, ubicado en el sector turistico, residencial y comercial de Cartagena de Indias. El hotel se encuentra a tan solo 15 minutos del Aeropuerto Internacional Rafael Nuñez.</div>
+                <!-- <a class="btn btn-primary btn-xl" style="font-size : 20px; font-family: Roboto" href="/reserva">Reserva ya!</a> -->
+                {% if not current_user.is_authenticated %}
+                    <a class="btn btn-primary btn-xl" style="font-size : 20px; font-family: Roboto" href="/login">Reserva ya!</a>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                    <a class="btn btn-primary btn-xl" style="font-size : 20px; font-family: Roboto" href="/reserva">Reserva ya!</a>
+                {% endif %}
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading">Nuestros Servicios</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-servicio" >
+                        <span class="fa-stack fa-4x">
+                            <img src="./static/assets/img/servicios/Restaurante.svg" alt="">
+                        </span>
+                        <p></p>
+                        <h4 class="my-3">Restaurante</h4>
+                        <p class="text-muted">Disfruta de nuestra propuesta grastrónomica que combina los mejores sabores de la comida colombiana.</p>
+                    </div>
+                    <div class="col-md-servicio">
+                        <span class="fa-stack fa-4x">
+                            <img src="./static/assets/img/servicios/Salon-eventos.svg" alt="">
+                        </span>
+                        <h4 class="my-3">Salones de eventos</h4>
+                        <p class="text-muted">El hotel Gevora dispone de 10 elegantes y variados salones con capacidad desde 20 hasta 400 personas.</p>
+                    </div>
+                    <div class="col-md-servicio">
+                        <span class="fa-stack fa-4x">
+                            <img src="./static/assets/img/servicios/Habitaciones.svg" alt="">
+                        </span>
+                        <p></p>
+                        <h4 class="my-3">Habitaciones de Lujos</h4>
+                        <p class="text-muted">Hermosas habitaciones y blackout para garantizar una noche placentera como tú te lo mereces.</p>
+                    </div>
+                    <div class="col-md-servicio">
+                        <span class="fa-stack fa-4x">
+                            <img src="./static/assets/img/servicios/DiscoBar.svg" alt="">
+                        </span>
+                        <p></p>
+                        <h4 class="my-3">Disco Bar</h4>
+                        <p class="text-muted">Pasa un rato agradable en nuestro exclusivo Bar con variedades de bebidas para escoger.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading">Galeria</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a>
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="static/assets/img/galeria/restaurante.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Restaurante</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 2-->
+                        <div class="portfolio-item">
+                            <a>
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="static/assets/img/galeria/habitacion.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Habitaciones</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 3-->
+                        <div class="portfolio-item">
+                            <a>
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="static/assets/img/galeria/piscina.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Zonas Humedas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <!-- Portfolio item 4-->
+                        <div class="portfolio-item">
+                            <a>
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="static/assets/img/galeria/Salon-eventos.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Salon de Eventos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                        <!-- Portfolio item 5-->
+                        <div class="portfolio-item">
+                            <a>
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="static/assets/img/galeria/Lobby.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Lobby</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <!-- Portfolio item 6-->
+                        <div class="portfolio-item">
+                            <a>
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"></div>
+                                </div>
+                                <img class="img-fluid" src="static/assets/img/galeria/gimnasio.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Gimnasio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Quienes somos-->
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading">¿Quienes Somos?</h2>
+                    <h3 class="section-subheading text-muted">Con más de 50 años de trayectoria y bajo la premisa “Hospitalidad 100% colombiana”, 
+                        Hotel Gevora ha acompañado a huéspedes y visitantes en sus momentos más importantes con un hotel de ciudad,
+                         perfectos para las visitas de negocios; campestres para los días de descanso o fines de semana, 
+                         además de una excelente infraestructura y conocimiento para la realización de eventos sociales y empresariales.</h3>
+                    <h3 class="titulo-about">Nuestra misión <br> </h3>
+                    <h3 class="section-subheading text-muted"> Nuestro hotel ofrece los mejores espacios cinco estrellas, para el descanso , la gastronomía, y los negocios, 
+                        junto a un gran equipo de trabajo que sirve con pasión, brinda servicios de alta calidad e innovación a sus huéspedes y clientes, 
+                        para hacerlos sentir como en casa y maximizando así el valor de la empresa.<br></h3>
+                    <h3 class="titulo-about">Nuestra vision <br> </h3>
+                    <h3 class="section-subheading text-muted">Seguir siendo líderes en la industria en el 2022, con instalaciones renovadas y servicios innovadores, para ser siempre la 
+                        primera opción en el mercado, promoviendo la armonía con el medio ambiente y la comunidad, 
+                        maximizando el valor de la empresa para nuestros accionistas. <br> </h3>
+                    <h3 class="titulo-about"> Nuestros valores <br> </h3>
+                    <h3 class="section-subheading text-muted"> RESPETO: Con nosotros mismos, el cliente interno y externo, para promover un ambiente de armonía.<br>
+                        COMPROMISO: Nuestra pasión es brindarles la mejor atención a nuestros huéspedes.<br>
+                        INTEGRIDAD: Somos responsables de nuestros actos y decisiones, haciendo siempre lo correcto desde la ética.<br>
+                        COOPERACIÓN:Trabajamos en equipo en todo lo que hacemos, para lograr los objetivos de nuestra empresa.<br>
+                        PROACTIVIDAD: Trabajamos con iniciativa y positivismo en el desarrollo de acciones creativas.<br></h3>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="reseña">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading">Reseñas</h2>
+                    <h3 class="section-subheading text-muted">Conozca las experiencias de Nuestros clientes.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/reseñas/1.jpg" alt="..." />
+                        </div>
+                        <h4 style="text-align: center">Parveen Anand</h4>
+                        <p style="text-align: center" class="text-muted">Excelente servicio, comida exquisita.</p>
+                        <p style="text-align: center"><img class="stars" src="./static/assets/img/reseñas/Star-llenas.svg" alt=""></p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/reseñas/2.jpg" alt="..." />
+                        </div>
+                        <h4 style="text-align: center">Diana Petersen</h4>
+                        <p style="text-align: center" class="text-muted">Muy buena atencion, habitaciones comodas.</p>
+                        <p style="text-align: center"><img class="stars" src="./static/assets/img/reseñas/Star-semi_llenas.svg" alt=""></p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/reseñas/3.jpg" alt="..." />
+                        </div>
+                        <h4 style="text-align: center">Larry Parker</h4>
+                        <p style="text-align: center" class="text-muted">Excelente variedad de bebidas, zonas humedas espectaculares.</p>
+                        <p style="text-align: center"><img class="stars" src="./static/assets/img/reseñas/Star-semi_llenas.svg" alt=""></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Noticias-->
+        <section class="page-section" id="noticias">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading">Noticias</h2>
+                    <h3 class="titulo-noticias">TERTULIA EN EL CARIBE-GUSTAVO TATIS DE FARANDA HOTELS & RESORT <br> </h3>
+                    <h3 class="section-subheading text-muted"> Julio 27 2022 | Eventos en el Hotel<br> </h3>
+                    <p style="text-align: center"><img src="./static/assets/img/noticias/tertulia.jpg" alt=""></p>
+                    <p class="section-noticias text-muted"> Reviviendo tradiciones<br>
+
+                        Noche de cuentos con el cronista Gustavo Tatis fue celebrado el dia jueves 22 de Agosto de 2019. <br>
+                        <br>
+                        
+                        El Hotel Caribe By Faranda Grand suscita historia cuando se escucha en las emocionadas voces de los turistas que posan de la mejor manera ante las cámaras queriendo guardar el mejor recuerdo de la fantástica Cartagena mientras la estructura neocolonial del Hotel Caribe se roba las miradas. <br>
+                        <br>
+                        
+                        El Caribe ha sido escenario de los mejores eventos de la ciudad de Cartagena: Festival de Cine Internacional de Cartagena, Reinado Nacional, entre otros. El Hotel también recibió grandes personajes mundiales como el escritor Gabriel García Márquez, el reconocido actor Chuck Norris y cantantes de la talla de Celia Cruz. <br>
+                        <br>
+                        
+                        Revivir parte de la historia que encierra a Cartagena significa traer los recuerdos al presente de tradiciones culturales y un valor por la caribeño que con el pasar del tiempo se ha ido esfumando, por ello el Hotel Caribe By Faranda Grand organiza con la participación de Gustavo Tatis, escritor, periodista, y cronista, las Noches de Cuentos que buscan revivir las tradiciones del Caribe. <br>
+                        <br>
+                        
+                        Gustavo Tatis actualmente es redactor cultural del diario El Universal de Cartagena. Tatis ganó el Premio Nacional de Periodismo Simón Bolívar en 1992, en la categoría cultural.* <br>
+                        <br>
+                        
+                        Fue una noche mágica, donde el publico se quedo sin aliento escuchando los cuentos caribeños del Cronista Gustavo Tatis.                        
+                    </p>
+                    <h3 class="titulo-noticias">TORRE DEL RELOJ DE FARANDA HOTELS & RESORTS<br> </h3>
+                    <h3 class="section-subheading text-muted"> Julio 24 2022 | Explora la ciudad<br> </h3>
+                    <p style="text-align: center"><img src="./static/assets/img/noticias/castillo.jpg" alt=""></p>
+                    <p class="section-noticias text-muted"> ¿Sabías que la Torre del Reloj era la única entrada a la ciudad de Cartagena? <br>
+                        A veces vamos caminando por las calles, pero no nos detenemos un segundo a admirar las bellezas y detalles que nos encontramos en nuestro día a día. Te propongo que cuando pases justo frente a la Torre del Reloj te detengas 30 segundos y contemples sus manecillas, no es una simple hora lo que ves, son pedacitos de la historia de la ciudad de Cartagena de Indias. <br><br>
+                        
+                        Este emblemático monumento es una construcción de 30 metros de alturas que fue realizada en 1631. Actualmente, se encuentra ubicada entre la Plaza de la Independencia y la Plaza de Los Coches. En 1874 se instaló un reloj que se trajo desde Estados Unidos y que después de 63 años fue remplazado por el actual, importado de Suiza. <br><br>
+                        
+                        La famosa Torre del Reloj, En un principio fue llamada la boca del puente y fue construida como entrada principal a la Heroica. Esta bella obra no solo fue la entrada a la ciudad amurallada, si no también una construcción estratégica ubicada para la defensa militar. Este monumento es considerado uno de los cinco relojes públicos más hermosos del mundo. <br><br>
+                        
+                        Cerca de la Torre del Reloj encontrarás una plaza rodeada de bares y restaurantes. De día llena de vendedores, olores, alegría y colores típicos de Colombia, a la hora del atardecer hay músicos y bailarines locales que forman un atractivo espectáculo. De noche se ilumina y es el escenario perfecto para enamorarse de las calles de la Hermosa ciudad de Cartagena.                        
+                    </p>
+        </section>
+        <!-- Contactenos-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Contactenos</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- * * SB Forms Contact Form * *-->
+                <!-- * * * * * * * * * * * * * * *-->
+                <!-- This form is pre-integrated with SB Forms.-->
+                <!-- To make this form functional, sign up at-->
+                <!-- https://startbootstrap.com/solution/contact-forms-->
+                <!-- to get an API token!-->
+                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="name" type="text" placeholder="Nombre *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="name:required">El nombre es requerido.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" type="email" placeholder="Email *" data-sb-validations="required,email" />
+                                <div class="invalid-feedback" data-sb-feedback="email:required">El Email es requerido.</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Email no valido.</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Phone number input-->
+                                <input class="form-control" id="phone" type="tel" placeholder="Numero de contacto *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">El numero de contacto es requerido.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" placeholder="Tu Mensaje *" data-sb-validations="required"></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">El mensaje es requerido.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit success message-->
+                    <!---->
+                    <!-- This is what your users will see when the form-->
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center text-white mb-3">
+                            <div class="fw-bolder">Mensaje enviado exitosamente!</div>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Enviar mensaje</button></div>
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; gevorahotel.com 2022</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Política de privacidad</a>
+                        <a class="link-dark text-decoration-none" href="#!">Términos de Uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/scripts/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

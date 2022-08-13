@@ -1,0 +1,226 @@
+body{
+    display: flex;
+}
+
+#navbar{
+width: 300px;
+height: 100vh;
+padding-top: 30px !important;
+background-color: #287cff !important;
+
+}
+
+a{
+    text-decoration: none
+}
+
+.logo-img{
+
+    fill: white;
+}
+
+.funciones>li .activado{
+    display: flex;
+    width: 284px;
+    height: 66px;
+    margin: 60.3px 0 30px;
+    padding: 0 0 0 14.4px;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+}
+.funciones>li .desactivado{
+    display: flex;
+    width: 284px;
+    height: 66px;
+    margin: 60.3px 0 30px;
+    padding: 0 0 0 14.4px;
+    border-radius: 10px;
+    background-color: #287cff;
+    color: white;
+}
+
+.gestion{
+    background-color: transparent;
+    color: #287cff;;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+}
+
+.content{
+
+    flex-grow: 1;
+    padding-top:60px;
+    padding-left: 30px;
+    padding-right: 40px;
+}
+
+h2{
+
+    width: 469px;
+    height: 37px;
+    margin: 0 211px 13px 0;
+    font-family: 'Roboto';
+    font-size: 30px;
+    text-align: left;
+    color: #222;
+}
+
+.input-group{
+    width: 100%;
+    display: flex;
+    
+}
+input{
+    width: 80%;
+    border: solid 3px #287cff;
+    background-color: #fff; 
+    border-radius: 40px;
+    border-top-right-radius: 40px !important;
+    border-bottom-right-radius: 40px !important;
+    padding: 9px 29px 8px 33px;
+}
+#agregar{
+    margin-left: 15px;
+    flex-grow: 1;
+    border-radius: 20px;
+    background-color: #3a6beb;
+    justify-content: center;
+    align-items: center;
+    
+}
+i{
+
+    color: white;
+    
+}
+
+.addButton{
+    font-family: 'Roboto';
+    color: white;
+    font-size: 18px;
+    margin: 0;
+}
+
+.user{
+    font-size: 20px !important;
+}
+
+.plus{
+    font-size: 8px !important;
+    font-weight: 100;
+    margin-left: 3px;
+}
+
+.lista{
+    margin-top: 80px;
+    width: 100%;
+    padding: 0;
+}
+.lista>li{
+    text-decoration: none;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.listado>div>h3{
+
+    color: white;
+    width: 150px;
+    text-align: center;
+}
+
+.listado{
+    
+    background-color: #3a6beb;
+    display: flex;
+    margin-bottom: 15px;
+}
+.listado>div{
+    flex-grow: 1;
+}
+
+.persona{
+    padding-left: 30px;
+  border-radius: 20px;
+  background-color: #d9d9d9b9;
+  height: 64px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  align-items: center;
+  
+}
+
+.persona>div>h3{
+    font-size: 20px;
+    
+    
+}
+
+.persona>div{
+    
+    width: 250px;
+    flex-grow: 1;
+}
+
+.persona>div>.activo{
+    color:#00f218;
+    margin-right: 15px;
+}
+.persona>div>.reserva{
+    color:#fde408;
+    margin-right: 15px;
+}
+
+.opciones:first-child{
+    width: 180px;
+    margin-left: 5px;
+}
+.opciones{
+    flex-grow: 3;
+}
+
+.opciones>button{
+    border-radius: 40px;
+    width: 170px;
+    border: none;
+}
+.opciones:nth-child(2){
+    width: 180px;
+    margin-right: 5px;
+}
+.estado{
+    display: flex;
+    
+}
+
+.reservaEdit{
+    font-size: 20px;
+    font-family: 'Roboto';
+    color: white;
+    background-color: #00f218;
+}
+
+.userEdit{
+    font-family: 'Roboto';
+    font-size: 20px;
+    color: white;
+    background-color: #3a6beb;
+}
+
+#Salir{
+    font-size: 40px;
+}
+.outCont{
+    display: flex;
+    text-align: center;
+    margin-bottom: 25px;
+    justify-content: center
+}
+.outCont>h3{
+    color: white;
+}
+
+

@@ -1,0 +1,122 @@
+
+
+body{
+    height: 100%;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+    background-image: url("../assets/hotelRegistro.jpg");
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0;
+}
+.registro-container{
+    margin-top: 110px;
+    width: 497px;
+    height: 580px;
+    padding: 16px 14px 63px 8px;
+    /* opacity: 0.9; */
+    background-color: #e3e2e2ad;
+    border-radius: 20px;
+    border: solid 1px #000;
+    
+    display: flex;
+
+
+}
+
+
+
+h3{
+    height: 40px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+    letter-spacing: 4px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    justify-content: center; 
+    align-items: center; 
+
+}
+.logo{
+
+    text-align: center;
+}
+
+.campos{
+
+    width: auto;
+    height: 40px;
+    border: solid 1px rgb(255, 0, 0);
+    background-color: #fffefe;
+    padding: 13px 170.6px 13px 16px;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    margin-bottom: 40px;
+    opacity: 1;
+    
+}
+
+
+.boton{
+    font-family: 'Roboto';
+    width: 350px;
+    height: 47px;
+    margin: 8px 22px 33px 26px;
+    padding: 8px 74px 7px;
+    border-radius: 20px;
+    border: none;
+    background-color: #ff2000;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #fff;
+   
+
+}
+.campos::placeholder{
+    width: 350px;
+    height: 32px;
+    margin: 0 0 0 29.9px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    color: #9d9c9c;
+    letter-spacing: 4px;
+
+}
+
+
+
+
+.elements-container{
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.titulo{
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

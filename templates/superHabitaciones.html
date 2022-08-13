@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/superHabitaciones.css') }}"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <title>SuperA.Habitaciones</title>
+</head>
+
+<body>
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="navbar">
+    <img class="logo-img" src="{{ url_for('static', filename='assets/Gevora_Hotel_Logo.svg') }}" />
+
+    <ul class="nav nav-pills flex-column mb-auto funciones">
+      <li>
+        <a href="/superAdministrador"><button class="gestion desactivado ">Gestionar Usuarios</button></a>
+      </li>
+      <li>
+        <button class="gestion activado">Gestionar Habitaciones</button>
+      </li>
+    </ul>
+    <div class="outCont">
+      <i class="fa fa-sign-out" aria-hidden="true" id="Salir"></i>
+      <h3>Salir</h3>
+    </div>
+  </div>
+  <div class="content">
+    <div class="input-group">
+      <input type="search" placeholder="Buscar habitacion por ID" />
+      <div class="d-flex" id="agregar">
+        <div class="d-flex">
+          <i class="fa fa-user user" aria-hidden="true"></i>
+          <i class="fa fa-plus plus" aria-hidden="true"></i>
+        </div>
+        <p class="addButton">Agregar habitacion</button>
+      </div>
+    </div>
+    <ul class="lista">
+      <li class="listado">
+        <div>
+          <h3>ID habitacion</h3>
+        </div>
+        <div>
+          <h3>Descripcion</h3>
+        </div>
+        <div>
+          <h3>Precio</h3>
+        </div>
+        <div>
+          <h3>Estado</h3>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>1</h3>
+
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h4>Hermosa habitacion con cama King size, pisos en mármol, paredes enchapadas en madera, escritorio de
+            trabajo, automatizacion en iluminacion y blackout para garantizar una noche placentera como tú te lo
+            mereces.
+            <br>
+            <span class="editIcon"><i class="fa fa-pencil descripcion" aria-hidden="true"></i></span>
+            <span>Incluye Desayuno.</span>
+          </h4>
+        </div>
+        <div>
+          <h3>1.100.000</h3>
+          <i class="fa fa-pencil contenidoPrecio" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 id="estado">Ocupada <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h3>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <h3>2</h3>
+
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h4>Hermosa habitacion con cama King size, pisos en mármol, paredes enchapadas en madera, escritorio de
+            trabajo, automatizacion en iluminacion y blackout para garantizar una noche placentera como tú te lo
+            mereces.
+            <br>
+            <span class="editIcon"><i class="fa fa-pencil descripcion " aria-hidden="true"></i></span>
+            <span>Incluye Desayuno.</span>
+          </h4>
+        </div>
+        <div>
+          <h3>1.100.000</h3>
+          <i class="fa fa-pencil contenidoPrecio" aria-hidden="true"></i>
+        </div>
+        <div>
+          <h3 id="estado">Ocupada <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h3>
+        </div>
+      </li>
+
+
+    </ul>
+
+    <!-- <div class="editDescripcion">
+      <h3 class="ha">Habitacion 1 <span><i class="fa fa-window-close cerrar"></i></span></h3>
+      <h3 class="de">Descripcion</h3>
+      <div class="contEditDescripcion">
+        <p>Hermosa habitacion</p>
+      </div>
+      <div class="saveCont">
+        <button class="guardar mt-2">Guardar</button>
+
+      </div>
+
+
+    </div> -->
+  </div>
+</body>
+<script src="{{ url_for('static', filename='scripts/superHabitaciones.js') }}"></script>
+
+</html>

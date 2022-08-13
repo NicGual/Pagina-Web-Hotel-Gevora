@@ -1,0 +1,171 @@
+body{
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    background-color: rgb(248, 248, 248);
+}
+.reserva-header {
+    width: 100%;
+    height: 650px;
+    padding: 16px 14px 63px 8px;
+    border: solid 1px #000;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../assets/new-luxury-bedroom.jpg");
+}
+
+.logo {
+    width: 207px;
+    height: 57px;
+    margin-top: 2%;
+    margin-bottom: 8%;
+}
+
+.reserva-body {
+    width: 100%;
+    height: 350px;
+    background: rgb(227, 226, 226, 0.8);
+    border: 1px solid #474747;
+    border-radius: 20px;
+}
+
+.reserva-form {
+    width: 100%;
+    height: 120px;
+    background: rgba(255, 239, 213, 0.6);
+}
+form .reserva-label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+}
+form .reserva-boton{
+    background-color: #FF725E;
+    color: white;
+}
+form .reserva-boton:hover{
+    background-color: #3A6BEB;
+    color: white;
+}
+
+.reserva-resultados {
+    width: 100%;
+}
+
+.reserva-resultado {
+    background-color: #D9D9D9;
+    border-radius: 20px;
+}
+.reserva-resultados .habitacion-body{
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: justify;
+}
+.reserva-pago {
+   
+    border-radius: 20px;
+}
+.boton {
+    width: 200px;
+    background-color: #FF725E;
+    color: white;
+}
+
+.boton:hover {
+
+    background-color: #3A6BEB;
+    color: white;
+}
+.boton-pagar {
+    width: 200px;
+    background-color: #F1A501;
+    color: white;
+}
+
+body{
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    background-color: rgb(248, 248, 248);
+}
+.reserva-header {
+    width: 100%;
+    height: 650px;
+    padding: 16px 14px 63px 8px;
+    border: solid 1px #000;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../assets/new-luxury-bedroom.jpg");
+}
+
+.logo {
+    width: 207px;
+    height: 57px;
+    margin-top: 2%;
+    margin-bottom: 8%;
+}
+
+.reserva-body {
+    width: 100%;
+    height: 350px;
+    background: rgb(227, 226, 226, 0.8);
+    border: 1px solid #474747;
+    border-radius: 20px;
+}
+
+.reserva-form {
+    width: 100%;
+    height: 120px;
+    background: rgba(255, 239, 213, 0.6);
+}
+form .reserva-label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+}
+form .reserva-boton{
+    background-color: #FF725E;
+    color: white;
+}
+form .reserva-boton:hover{
+    background-color: #3A6BEB;
+    color: white;
+}
+
+.reserva-resultados {
+    width: 100%;
+}
+
+.reserva-resultado {
+    background-color: #D9D9D9;
+    border-radius: 20px;
+}
+.reserva-resultados .habitacion-body{
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: justify;
+}
+.reserva-pago {
+   
+    border-radius: 20px;
+}
+.boton {
+    width: 200px;
+    background-color: #FF725E;
+    color: white;
+}
+
+.boton:hover {
+
+    background-color: #3A6BEB;
+    color: white;
+}
+.boton-pagar {
+    width: 200px;
+    background-color: #F1A501;
+    color: white;
+}
