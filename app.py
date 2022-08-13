@@ -17,6 +17,7 @@ from flask_wtf.csrf import CSRFProtect
 #werkzeug security
 from werkzeug.security import generate_password_hash, check_password_hash
 
+#hola
 
 # importar validaciones
 from validaciones import *
