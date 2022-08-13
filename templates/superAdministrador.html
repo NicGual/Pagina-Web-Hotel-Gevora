@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel = "icon" href ="{{ url_for('static', filename='assets/favicon.ico') }}">
+    <link rel = "icon" href ={{ url_for('static', filename='assets/favicon.ico') }}>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/superAdministrador.css') }}"/>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/superAdministrador.css') }} />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
@@ -26,99 +26,113 @@
   </head>
   <body>
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="navbar">
-      <img class="logo-img" src="{{ url_for('static', filename='assets/Gevora_Hotel_Logo.svg') }}"/>
+      <img class="logo-img" src={{ url_for('static', filename='assets/Gevora_Hotel_Logo.svg') }} />
 
       <ul class="nav nav-pills flex-column mb-auto funciones">
         <li>
-          <button class="gestion activado ">Gestionar Usuarios</button>
+          <button class="gestion activado " id="gesUs">Gestionar Usuarios</button>
         </li>
         <li>
-          <a href="/superHabitaciones"><button class="gestion desactivado">Gestionar Habitaciones</button></a>
+          <button class="gestion desactivado" id="gesHab">Gestionar Habitaciones</button>
         </li>
       </ul>
       <div class="outCont">
-        <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true" id="Salir"></i></a>
-        <h3>Salir</h3>
+        <a href="/logOut" id="salir"><i class="fa fa-sign-out" aria-hidden="true" id="Salir"></i><h3>Salir</h3></a>
+        
       </div>
     </div>
     <div class="content">
       <div class="input-group">
-        <input type="search" placeholder="Buscar usuario por nombre"/>
-        <div class="d-flex" id="agregar">
-            <div class="d-flex">
-                <i class="fa fa-user user" aria-hidden="true"></i>
-                <i class="fa fa-plus plus" aria-hidden="true"></i>
-            </div>
-            <p class="addButton">Agregar usuario</button>
+        <input type="search" placeholder="Buscar usuario por correo" id='inputBuscar'/>
+      </div>
+      <button  class="addButton3 btn btn-primary mt-2">Buscar Usuario</button>
+      <button  class="addButton2 btn btn-primary mt-2" type="button" data-bs-toggle="modal" data-bs-target="#addModal">Agregar Usuario</button>     
+      <div class="tableConta mt-2">
+        <table class="table  table-hover ">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Tipo Usuario</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if usuarios|length > 0 %}
+            {% for i in usuarios %}
+            
+            <tr id="{{i[2]}}">
+              <th scope="row">{{i[0]}}</th>
+              <td class="nombre">{{i[2]}}</td>
+              <td>
+                {{i[4]}}
+              </td>
+              <td class="opciones">
+      
+                <button class="eliminar btn btn-danger form-control" iduser="{{i[0]}}"  data-bs-toggle="modal" data-bs-target="#modFor{{i[0]}}">Eliminar</button>
+                <a href="/editUser/{{i[0]}}" class="editar btn btn-primary form-control">Editar</a>
+                
+                <div class="modal" tabindex="-1" id='modFor{{i[0]}}'>
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Eliminar Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body" id="bodyDelete">
+                        <p class="adver">Seguro que desea eliminar al usuario {{i[2]}}</p>
+                        <button class="btn btn-warning form-control delUser" idUser="{{i[0]}}">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+              </td>
+              
+            </tr>
+            {% endfor %}
+            {% endif %}
+      
+          </tbody>
+        </table>
+      </div>
+    <div class="modal" tabindex="-1" id='addModal'>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Agregar Usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/superCreateUser" method="POST">
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="correo" required>
+              </div>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="cont" class="form-label">Password</label>
+                <input type="password" class="form-control" id="cont" name="contrasena" required>
+              </div>
+              <div class="mb-3">
+                <label for="rol" class="form-label">Estado:</label>
+                <select name="rol" id="rol">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
-      <ul class="lista">
-        <li class="listado">
-            <div><h3>Usuario</h3></div>
-            <div><h3 class="tipo">Tipo usuario</h3></div>
-            <div><h3>Opciones</h3></div>
-        </li>
-        <!-- <li class="persona">
-            <div><h3 class="nombre">Christian Sierra</h3></div>
-            <div class="estado"><h3>Administrador</h3></div>
-            <div class="opciones">
-                <button class="eliminar">Eliminar</button>
-                <button class="editar">editar</button>
-            </div>
-        </li>
-        <li class="persona">
-          <div><h3 class="nombre">Leidy Cristina</h3></div>
-          <div class="estado"><h3>Usuario</h3></div>
-          <div class="opciones">
-              <button class="eliminar">Eliminar</button>
-              <button class="editar">editar</button>
-          </div>
-        </li>
-        <li class="persona">
-          <div><h3 class="nombre">Nicolas Gualteros</h3></div>
-          <div class="estado"><h3>Sup.Admin</h3></div>
-          <div class="opciones">
-              <button class="eliminar">Eliminar</button>
-              <button class="editar">editar</button>
-          </div>
-        </li>
-        <li class="persona">
-          <div><h3 class="nombre">Nicolas Gualteros</h3></div>
-          <div class="estado"><h3>Sup.Admin</h3></div>
-          <div class="opciones">
-              <button class="eliminar">Eliminar</button>
-              <button class="editar">editar</button>
-          </div>
-        </li>
-        <li class="persona">
-          <div><h3 class="nombre">Nicolas Gualteros</h3></div>
-          <div class="estado"><h3>Sup.Admin</h3></div>
-          <div class="opciones">
-              <button class="eliminar">Eliminar</button>
-              <button class="editar">editar</button>
-          </div>
-        </li> -->
-        {% for x in items["Usuarios"] %}
-	      <li class="persona">
-            <div><h3 class="nombre">{{ x["nombre"] }}</h3></div>
-            <!-- <div><h3>{{ x["_id"] }}</h3></div> -->
-            {% if x["rol"] == "1" %}
-              <div class="estado"><h3>Sup.Admin</h3></div>
-            {% endif %}
-            {% if x["rol"] == "2" %}
-              <div class="estado"><h3>Administrador</h3></div>
-            {% endif %}
-            {% if x["rol"] == "3" %}
-              <div class="estado"><h3>Usuario</h3></div>
-            {% endif %}
-            <div class="opciones">
-                <button class="eliminar">Eliminar</button>
-                <button class="editar">editar</button>
-            </div>
-        </li>
-        {% endfor %}
-      </ul> 
     </div>
+    
   </body>
-  <script src="{{ url_for('static', filename='scripts/superAdministadors.js') }}"></script>
+  <script src={{ url_for('static', filename='scripts/superAdministador.js') }}></script>
 </html>

@@ -6,6 +6,9 @@ from sqlite3 import Error
 import json
 import requests
 from babel.numbers import format_number, format_decimal, format_percent
+from SuperAdminRoutes import SuperAdminUsers
+from adminRoutes import adminRouter
+from staticRoutes import staticRouter
 
 # login con flask-login
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -63,6 +66,8 @@ def sql_new_user(nombre,email,password,rol):
 
 # Crear app
 from configApp import *
+#Rutas carpeta static
+app.register_blueprint(staticRouter)
 # app = Flask(__name__)
 # api = Api(app)
 # app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -378,6 +383,14 @@ def reserva():
         return render_template('reserva.html', items=parsed, formato_moneda=format_decimal)
     else:
         return render_template('index.html')
+
+#Rutas superadministrador
+app.register_blueprint(SuperAdminUsers)
+
+#Rutas administrador
+app.register_blueprint(adminRouter)
+
+
 
 @app.route('/administrador')
 @login_required

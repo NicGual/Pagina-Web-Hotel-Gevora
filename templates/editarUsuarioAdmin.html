@@ -1,0 +1,25 @@
+
+<div class="titulo d-flex">
+  <i class="fa fa-arrow-left" aria-hidden="true" id="arrow" onclick="gestionUsuarios(1)"></i>
+  <h2>Editar Usuario</h2>
+</div>
+<div class="container mt-3" id="contenedorAlerta">
+</div>
+<form id="editarUsuarioForm">
+  <div class="modificar">
+    <h3 class="datos">Datos</h3>
+    <div class="d-flex" id="dataCont">
+      <div class="campo-nombre">
+        <h3>Nombre</h3>
+        <input id="nombreEditarUsuario" class="input-editar-usuario" type="text" value="{{usuario[0][1]}}">
+      </div>
+      <div class="campo-correo">
+        <h3>Correo</h3>
+        <input id="correoEditarUsuario" class="input-editar-usuario" type="email" value="{{usuario[0][2]}}">
+      </div>
+    </div>
+  </div>
+  <button class="guardar" type="submit" id="guardarUsuario">Guardar</button>
+</form>
+
+

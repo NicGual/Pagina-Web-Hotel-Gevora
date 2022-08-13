@@ -34,12 +34,6 @@ const eliminarPersona = (elemento)=>{
     buttonCancelar.classList.add('cancelar')
     buttonAceptar.innerText='Aceptar'
     buttonCancelar.innerText='Cancelar'
-    buttonCancelar.addEventListener('click',()=>{
-        advertencia.remove()
-        document.body.style.backgroundColor = "var(--bs-body-bg)";
-        document.body.style.opacity = "1";
-
-    })
     buttonAceptar.addEventListener('click',()=>{
         
         advertencia.innerHTML='<h4>Usuario Eliminado satisfactoriamente</h4>'

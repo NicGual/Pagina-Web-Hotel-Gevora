@@ -1,6 +1,46 @@
 const Descripcion=document.querySelectorAll('.descripcion');
 const contPrecio=document.querySelectorAll('.contenidoPrecio');
+const gesUs= document.getElementById('gesUs')
+const stats=document.querySelectorAll('.changeStatus')
+const buscar = document.querySelector('.addButton3')
 
+function myFunction(id,desc){
+    let modalContent=document.getElementById('changeDescHab')
+    let modalBody = modalContent.querySelector('.modal-body')
+    let textArea = modalBody.querySelector('.descripcionHab')
+    let myModal = new bootstrap.Modal(modalContent)
+    textArea.value = desc
+    myModal.show()
+    let confirmChange = modalContent.querySelector('.changeDesc')
+    confirmChange.addEventListener('click',()=>{
+        let descripcionOld= desc
+        let descripcionNew= textArea.value
+        window.location.href = '/habDescripcion/' + descripcionOld + '/' + descripcionNew 
+    })
+}
+
+stats.forEach(element =>{
+    element.addEventListener('click',()=>{
+        let modalContent=document.getElementById('changeStatusHab')
+        let myModal = new bootstrap.Modal(modalContent)
+        myModal.show()
+        
+        let confirm= modalContent.querySelector('.confir')
+        
+        confirm.addEventListener('click',()=>{
+            if(element.innerHTML == 'Ocupado'){
+
+                elementSt='libre'
+            }else{
+                elementSt='ocupado'
+            }
+            
+            window.location.href = '/habStatus/' + element.getAttribute('id') + '/' + elementSt
+        })
+        
+        
+    })
+})
 
 const editarDescripcion=(i)=>{
     let h4= i.parentElement.parentElement
@@ -64,4 +104,30 @@ contPrecio.forEach((i)=>{
     i.addEventListener('click',()=>{
         console.log('editar precio')
     })
+})
+
+gesUs.addEventListener('click',()=>{
+    window.location.href = "/SuperAdminUsers";
+})
+
+
+
+buscar.addEventListener('click',()=>{
+    let inputValue=document.getElementById('inputHabitacion')
+    window.location.href = '#'+inputValue.value
+    try{
+        
+        let habitacion=document.getElementById(inputValue.value)
+        let idTag=habitacion.querySelector('.nombre')
+        
+        idTag.style.color='red'
+        setTimeout(()=>{
+            idTag.style.color='black'
+        },700)
+    }catch{
+        window.alert('Habitacion no encontrada')
+        
+    }
+    
+
 })

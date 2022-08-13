@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel = "icon" href ='assets/favicon.ico'>
+    <link rel="icon" href={{ url_for('static', filename='assets/Gevora_Hotel_Logo.svg') }}>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="static/css/editarUsuario.css" />
+    <link rel="stylesheet" href={{ url_for('static', filename='css/editarUsuario.css') }}/>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="navbar">
-      <img class="logo-img" src="assets/Gevora_Hotel_Logo.svg" />
+      <img class="logo-img" src={{ url_for('static', filename='assets/Gevora_Hotel_Logo.svg') }} />
 
       <ul class="nav nav-pills flex-column mb-auto funciones">
         <li>
@@ -46,23 +46,27 @@
             <i class="fa fa-arrow-left" aria-hidden="true" id="arrow"></i>
             <h2>Editar Usuario</h2>
         </div>
-        <form action="">
+        
+        <form action="/editUser/{{user}}" method="POST">
         <div class="modificar">
             <h3 class="datos">Datos</h3>
             <div class="d-flex" id="dataCont">
                 <div class="campo-nombre">
                     <h3>Nombre</h3>
-                    <input type="text" >
+                    <input type="text" name="nombre" placeholder="{{userData[1]}}" required >
                 </div>
                 <div class="campo-correo">
                     <h3>Correo</h3>
-                    <input type="email">
+                    <input type="email" name="correo" placeholder="{{userData[2]}}" required>
                 </div>
             </div>
         </div>
-        <button class="guardar">Guardar</button>
+        <input type="submit" class="guardar">
         </form>
+
+        
         
     </div>
   </body>
+  <script src={{ url_for('static', filename='scripts/editarUsuario.js') }}></script>
 </html>

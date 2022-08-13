@@ -1,98 +1,171 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel = "icon" href ="{{ url_for('static', filename='assets/favicon.ico') }}">
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/administradorHabitaciones.css') }}"/>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-      crossorigin="anonymous"
-    ></script>
-    <title>AdminHabitaciones</title>
-  </head>
-  <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="navbar">
-      <img class="logo-img" src="{{ url_for('static', filename='assets/Gevora_Hotel_Logo.svg') }}" />
-
-      <ul class="nav nav-pills flex-column mb-auto funciones">
-        <li>
-          <a href="/administrador"><button class="gestion desactivado ">Gestionar Usuarios</button></a>
-        </li>
-        <li>
-          <button class="gestion activado">Gestionar Habitaciones</button>
-        </li>
-      </ul>
-      <div class="outCont">
-        <i class="fa fa-sign-out" aria-hidden="true" id="Salir"></i>
-        <h3>Salir</h3>
-      </div>
-    </div>
-    <div class="content">
-      <div class="input-group">
-        <input type="search" placeholder="Buscar habitacion por ID"/>
-        <div class="d-flex" id="agregar">
-            <div class="d-flex">
-                <i class="fa fa-user user" aria-hidden="true"></i>
-                <i class="fa fa-plus plus" aria-hidden="true"></i>
-            </div>
-            <p class="addButton">Agregar habitacion</button>
+<div class="input-group search">
+    <input type="form-control" placeholder="Buscar habitacion por ID" />
+    <button type="button" id="agregar-habitacion" class="btn btn-success form-control d-flex justify-content-center"
+        data-bs-toggle="modal" data-bs-target="#ventanaModal">
+        <div class="d-flex ">
+            <i class="fa fa-bed bed" aria-hidden="true"></i>
+            <i class="fa fa-plus plus" aria-hidden="true"></i>
         </div>
-      </div>
-      <ul class="lista">
-        <li class="listado">
-          <div><h3>ID habitacion</h3></div>
-          <div><h3>Descripcion</h3></div>
-          <div><h3>Precio</h3></div>
-          <div><h3>Estado</h3></div>
-      </li>
-        <li>
-          <div><h3>1</h3></div>
-          <div>
-            <h4>Hermosa habitacion con cama King size, pisos en mármol, paredes enchapadas en madera, escritorio de trabajo, automatizacion en iluminacion y blackout para garantizar una noche placentera como tú te lo mereces.
-            <br>
-            <span class="editIcon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-           <span>Incluye Desayuno.</span> 
-            </h4>
-          </div>
-          <div>
-            <h3>1.100.000</h3>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </div>
-          <div><h3 id="estado">Ocupada <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h3></div>
-        </li>
-        
-          <li>
-            <div><h3>2</h3></div>
-            <div>
-              <h4>Hermosa habitacion con cama King size, pisos en mármol, paredes enchapadas en madera, escritorio de trabajo, automatizacion en iluminacion y blackout para garantizar una noche placentera como tú te lo mereces.
-              <br>
-              <span class="editIcon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-             <span>Incluye Desayuno.</span> 
-              </h4>
-            </div>
-            <div>
-              <h3>1.100.000</h3>
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </div>
-            <div><h3 id="estado">Ocupada <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></h3></div>
-          </li>
-          
-        
-      </ul>
+        <p class="addButton">Agregar Habitacion</p>
+    </button>
+</div>
+
+<div class="modal fade" id="ventanaModal" tabindex="-1" aria-labelledby="ventanaModalLabel" aria-hidden="true">
+    <div class="container w-50 mt-3" id="contenedorAlerta">
     </div>
-  </body>
-</html>
+    <div class="modal-dialog" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Agregar Habitacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row" id="crearHabitacionForm" action="#" method="post">
+                    <div class="col-12 mb-3">
+                        <label for="descripcionHabitacion" class="form-label">Descripción</label>
+                        <textarea type="text" class="form-control" name="descripcion"
+                            id="descripcionHabitacion"></textarea>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="precioHabitacion" class="form-label">Precio</label>
+                        <input type="text" class="form-control" name="precio" id="precioHabitacion">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="idHabitacion" class="form-label">ID</label>
+                        <input type="text" class="form-control" name="numeroHabitacion" id="idHabitacion">
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" id="crearHabitacionBoton" class="btn btn-primary">Crear
+                            Habitacion</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditarHabitacion" tabindex="-1" aria-labelledby="ventanaModalLabel" aria-hidden="true">
+    <div class="container w-50 mt-3" id="contenedorAlertaEditar">
+    </div>
+    <div class="modal-dialog" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Editar Habitacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="gestionHabitaciones()"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row" id="editarHabitacionForm" action="#" method="post">
+                    <div class="col-12 mb-3">
+                        <label for="descripcionHabitacion" class="form-label">Descripción</label>
+                        <textarea type="text" class="form-control" name="descripcion"
+                            id="editarDescripcion"></textarea>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="editarPrecio" class="form-label">Precio</label>
+                        <input type="text" class="form-control" name="precio" id="editarPrecio">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="editarId" class="form-label">ID</label>
+                        <input type="text" class="form-control" name="numeroHabitacion" id="editarId" disabled>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" id="editarHabitacionBoton" class="btn btn-primary">Guardar 
+                            cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="tableConta ">
+    <table class="table  table-hover ">
+        <thead>
+            <tr>
+                <th scope="col">Edit</th>
+                <th scope="col">id</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if habitaciones|length > 0 %}
+            {% for i in habitaciones %}
+            <tr id="{{i[0]}}">
+                <th id="editarHabitacion" onclick="editarHabitacion('{{i[0]}}')" data-bs-target="#modalEditarHabitacion" data-bs-toggle="modal">
+                    <i class="fa fa-pencil"
+                        aria-hidden="true"></i>
+                    </th>
+                <th scope="row" class="nombre" id="{{"habitacion"+i[0]|string}}">{{i[0]}}</th>
+                <td class="tdDes" id="{{"descripcion"+i[0]|string}}">{{i[3]}}</td>
+                <td id="{{"precio"+i[0]|string}}">{{i[2]}}</td>
+                <td>
+                    {% if i[1] == 'ocupado' %}
+                    <h3 class="btn btn-secondary form-control changeStatus" id="{{i[0]}}">Ocupado</h3>
+                    {% elif i[1] == 'libre' %}
+                    <h3 class="btn btn-success form-control changeStatus" id="{{i[0]}}">Libre</h3>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+        </tbody>
+    </table>
+</div>
+<nav aria-label="Page navigation example" class="d-flex justify-content-center" id="paginacion">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" id="paginaAnterior" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% for pagina in range(numeroPaginas) %}
+      <li class="page-item" id="pagina{{pagina + 1}}"><a class="page-link" name="pagina" href="#">{{pagina + 1}}</a></li>
+      {% endfor %}
+      <li class="page-item">
+        <a class="page-link" id="paginaSiguiente" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+<div class="modal" tabindex="-1" id='changeStatusHab'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar Estado</h5>
+
+            </div>
+            <div class="modal-body">
+                <p>Se cambiará el estado de la habitacion</p>
+                <button class="btn btn-warning form-control confir">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" id='changeDescHab'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar Descripcion</h5>
+
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control mb-2 descripcionHab" name="descripcion" id="descripcionHab" cols="30"
+                    rows="10" style="resize: none;"></textarea>
+                <button class="btn btn-warning form-control changeDesc">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

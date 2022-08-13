@@ -13,10 +13,6 @@ background-color: #287cff !important;
 
 }
 
-a{
-    text-decoration: none
-}
-
 .logo-img{
 
     fill: white;
@@ -56,7 +52,7 @@ a{
     position: relative;
     flex-grow: 1;
     padding-top:60px;
-    padding-left: 30px;
+    padding-left: 10px;
     padding-right: 40px;
 }
 
@@ -86,12 +82,13 @@ input{
     padding: 9px 29px 8px 33px;
 }
 #agregar{
-    margin-left: 15px;
-    flex-grow: 1;
+    
+    width: 200px;
     border-radius: 20px;
     background-color: #3a6beb;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
     
 }
 i{
@@ -101,10 +98,13 @@ i{
 }
 
 .addButton{
+    
     font-family: 'Roboto';
     color: white;
     font-size: 18px;
     margin: 0;
+    background: none;
+    
 }
 
 .user{
@@ -118,9 +118,11 @@ i{
 }
 
 .lista{
-    margin-top: 80px;
+    margin-top: 0px;
     width: 100%;
     padding: 0;
+    overflow-y:scroll;
+    max-height: 500px;
 }
 .lista>li{
     text-decoration: none;
@@ -140,6 +142,7 @@ i{
     background-color: #3a6beb;
     display: flex;
     margin-bottom: 15px;
+    margin-top: 20px;
 }
 .listado>div{
     flex-grow: 1;
@@ -179,23 +182,9 @@ i{
     margin-right: 15px;
 }
 
-.opciones:first-child{
-    width: 180px;
-    margin-left: 5px;
-}
-.opciones{
-    flex-grow: 3;
-}
 
-.opciones>button{
-    border-radius: 40px;
-    width: 170px;
-    border: none;
-}
-.opciones:nth-child(2){
-    width: 180px;
-    margin-right: 5px;
-}
+
+
 .estado{
     display: flex;
     
@@ -206,6 +195,7 @@ i{
     font-family: 'Roboto';
     color: white;
     background-color: #f20000;
+    width: 170px;
 }
 
 .editar{
@@ -213,6 +203,7 @@ i{
     font-size: 20px;
     color: white;
     background-color: #3a6beb;
+    width: 170px;
 }
 
 #Salir{
@@ -253,6 +244,7 @@ i{
 }
 
 .aceptar{
+    display: inline-block;
     color: white;
     width: 100px;
     border: none;
@@ -261,7 +253,7 @@ i{
     height: 50px;
     font-size: 18px;
     font-family: 'Roboto';
-    
+    padding: 11px;
 }
 
 p{
@@ -284,4 +276,43 @@ p{
 }
 h4{
     margin-top: 100px;
+}
+
+a{
+    text-decoration: none;
+    
+}
+
+.buscarEspecifico{
+    height: 50px;
+    
+}
+
+.elementoEsp{
+    border: 1px solid blue;
+    height: 50px;
+}
+
+#inputBuscar{
+    flex-grow: 2;
+}
+
+.addButton2{
+    width: 200px;
+}
+
+.tableConta{
+    overflow-y:scroll;
+    max-height: 600px;
+}
+.table td{
+    text-align: center; 
+}
+.table tr{
+    text-align: center; 
+}
+
+#salir{
+    color: white;
+    display: flex;
 }

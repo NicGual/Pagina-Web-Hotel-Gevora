@@ -1,0 +1,95 @@
+<div class="search input-group">
+  <input type="form-control" placeholder="Buscar usuario por nombre" />
+  <button type="button" id="agregar-usuario" class="btn btn-primary form-control d-flex justify-content-center"
+    data-bs-toggle="modal" data-bs-target="#ventanaModal">
+    <div class="d-flex ">
+      <i class="fa fa-user user" aria-hidden="true"></i>
+      <i class="fa fa-plus plus" aria-hidden="true"></i>
+    </div>
+    <p class="addButton">Agregar usuario</p>
+  </button>
+</div>
+<div class="modal fade" id="ventanaModal" tabindex="-1" aria-labelledby="ventanaModalLabel" aria-hidden="true">
+  <div class="container w-50 mt-3" id="contenedorAlerta">
+  </div>
+  <div class="modal-dialog" id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitulo">Nuevo Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row" id="crearUsuarioForm" action="#" method="post">
+          <div class="col-6 mb-3">
+            <label for="nombreUsuario" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="usuario" id="nombreUsuario">
+          </div>
+          <div class="col-6 mb-3">
+            <label for="correoUsuario" class="form-label">Correo</label>
+            <input type="email" class="form-control" name="correo" id="correoUsuario">
+          </div>
+          <div class="col-6 mb-3">
+            <label for="contrasenaUsuario" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="contrasena" id="contrasenaUsuario">
+          </div>
+          <div class="col-6 mb-3">
+            <label for="tipoUsuario" class="form-label">Tipo de Usuario</label>
+            <input type="" class="form-control" id="tipoUsuario" name="tipo" value="usuario" placeholder="Usuario"
+              disabled>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" id="crearUsuarioBoton" class="btn btn-primary">Crear Usuario</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+<ul class="lista-usuarios" id="listaUsuarios">
+  <li class="listado">
+    <div>
+      <h3>Cliente</h3>
+    </div>
+    <div>
+      <h3>Estado</h3>
+    </div>
+    <div>
+      <h3>Opciones</h3>
+    </div>
+  </li>
+
+  {% for index in range(usuarios|length) %}
+  <li class="persona">
+    <div>
+      <h3>{{ usuarios[index][1] }}</h3>
+    </div>
+    <div class="estado"><i class="fa fa-circle activo" aria-hidden="true"></i>
+      <h3>Activo</h3>
+    </div>
+    <div class="opciones d-flex justify-content-center">
+      <button class="reservaEdit me-3">Editar Reserva</button>
+      <button id="{{usuarios[index][0]}}" class="userEdit me-3">Editar Usuario</button>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-center" id="paginacion">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" id="paginaAnterior" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% for pagina in range(numeroPaginas) %}
+    <li class="page-item" id="pagina{{pagina + 1}}"><a class="page-link" name="pagina" href="#">{{pagina + 1}}</a></li>
+    {% endfor %}
+    <li class="page-item">
+      <a class="page-link" id="paginaSiguiente" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

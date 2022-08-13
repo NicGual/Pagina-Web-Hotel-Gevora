@@ -10,10 +10,6 @@ background-color: #287cff !important;
 
 }
 
-a{
-text-decoration: none
-}
-
 .logo-img{
 
     fill: white;
@@ -73,7 +69,7 @@ h2{
     display: flex;
     
 }
-input{
+/* input{
     width: 70%;
     border: solid 3px #287cff;
     background-color: #fff; 
@@ -81,15 +77,15 @@ input{
     border-top-right-radius: 40px !important;
     border-bottom-right-radius: 40px !important;
     padding: 9px 29px 8px 33px;
-}
-#agregar{
+} */
+#agregar-habitacion{
     margin-left: 15px;
     flex-grow: 1;
     border-radius: 20px;
     background-color: #5fba7a;
     justify-content: center;
     align-items: center;
-    
+    cursor:pointer
 }
 i{
 
@@ -132,7 +128,6 @@ i{
 .listado>div{
 
     color: white;
-    width: 150px;
     text-align: center;
     display: inline;
 }
@@ -147,14 +142,14 @@ i{
     flex-grow: 1;
 }
 
-.lista>li>div{
+/* .lista>li>div{
     width: 200px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     
-}
+} */
 
 .persona{
     padding-left: 30px;
@@ -267,4 +262,17 @@ span{
 
 .fa-angle-down{
     font-size: 24px;
+}
+
+.descripcion-habitacion{
+    height: 45px;
+}
+
+.descripcion-fondo{
+    height: 15px;
+    font-size: 14px;
+}
+
+.tableConta {
+    margin-top: 23px;
 }

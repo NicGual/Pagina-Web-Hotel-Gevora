@@ -10,10 +10,6 @@ background-color: #287cff !important;
 
 }
 
-a{
-    text-decoration: none
-}
-
 .logo-img{
 
     fill: white;
@@ -73,8 +69,8 @@ h2{
     display: flex;
     
 }
-input{
-    width: 80%;
+.search input{
+    width: 78%;
     border: solid 3px #287cff;
     background-color: #fff; 
     border-radius: 40px;
@@ -82,14 +78,14 @@ input{
     border-bottom-right-radius: 40px !important;
     padding: 9px 29px 8px 33px;
 }
-#agregar{
+#agregar-usuario{
     margin-left: 15px;
     flex-grow: 1;
     border-radius: 20px;
     background-color: #3a6beb;
     justify-content: center;
     align-items: center;
-    
+    cursor:pointer
 }
 i{
 
@@ -114,12 +110,12 @@ i{
     margin-left: 3px;
 }
 
-.lista{
-    margin-top: 80px;
+.lista-usuarios{
+    margin-top: 30px;
     width: 100%;
     padding: 0;
 }
-.lista>li{
+.lista-usuarios>li{
     text-decoration: none;
     display: flex;
     justify-content: space-around;
