@@ -97,8 +97,8 @@ form{
 
 .campos{
 
-    width: 150.9px;
-    height: 20px;
+    width: auto;
+    height: 40px;
     background-color: #fffefe;
     padding: 13px 170.6px 13px 16px;
     object-fit: contain;

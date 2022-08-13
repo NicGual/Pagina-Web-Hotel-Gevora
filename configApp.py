@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, blueprints
 from flask_restful import Api 
 
 # Crear app

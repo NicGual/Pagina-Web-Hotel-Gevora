@@ -4,6 +4,7 @@ from flask import redirect, render_template, request,session, Blueprint
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import functions
 from werkzeug.security import generate_password_hash
+from auth.Autenticacion import *
 
 SuperAdminUsers =Blueprint('SuperAdminUsers', __name__)
 
@@ -51,7 +52,7 @@ def superUsuarios():
     if current_user.rol == "1":
                     
         usuarios=functions.sql_list_usuarios()
-        return render_template('SuperAdministrador.html',usuarios=usuarios)
+        return render_template('superAdministrador.html',usuarios=usuarios)
     else:
             return render_template('index.html')
 
