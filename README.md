@@ -1,3 +1,3 @@
-# Flask Project Template
+# Pagina Web del Hotel Gevora 
 
-This is a Flask project template.
+proyecto creado utilizando HTML, CSS y javascript para el frontend y usando python con el framework Flask para el backend
