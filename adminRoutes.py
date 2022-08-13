@@ -63,7 +63,7 @@ def editarUsuario(id):
     
         if request.method == 'GET':
             usuario = query.get_specific_user(id)
-            return render_template('editarUsuario.html', id=id, usuario=usuario)
+            return render_template('editarUsuarioAdmin.html', id=id, usuario=usuario)
         
         if request.method == 'UPDATE':
             usuario = request.json
