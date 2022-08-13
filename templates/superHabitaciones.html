@@ -62,10 +62,10 @@
         {% if habitaciones|length > 0 %}
         {% for i in habitaciones %}
         <tr id="{{i[0]}}">
-          <th id="editDesc" onclick="myFunction('{{i[0]}}','{{i[2]}}')"><i class="fa fa-pencil" aria-hidden="true"></i></th>
+          <th id="editDesc" onclick="myFunction('{{i[0]}}','{{i[3]}}')"><i class="fa fa-pencil" aria-hidden="true"></i></th>
           <th scope="row" class="nombre">{{i[0]}}</th>
-          <td class="tdDes">{{i[2]}}</td>
-          <td>1.100.000</td>
+          <td class="tdDes">{{i[3]}}</td>
+          <td>{{i[2]}}</td>
           <td>
             {% if i[1] == 'ocupado' %}
             <h3 class="btn btn-secondary form-control changeStatus" id="{{i[0]}}">Ocupado</h3>

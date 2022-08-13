@@ -367,5 +367,5 @@ async function guardarCambios () {
 }
 
 function salir() {
-    window.location.href = "/"
+    window.location.href = "/logout"
 }
