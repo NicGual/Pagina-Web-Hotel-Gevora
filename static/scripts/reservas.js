@@ -11,6 +11,7 @@ var Suma = 0;
 var TotalConteo = 0;
 var Ultimo_precio;
 var Size_vector;
+var TotalNoche;
 
 const seleccionarHabitacion = document.getElementsByClassName("boton_sel")
 
@@ -32,6 +33,7 @@ function ProcesarFechas(){
     var fechaFin    = new Date(f_salida).getTime();
     var diff = fechaFin - fechaInicio;
     // console.log(diff/(1000*60*60*24) );
+    TotalNoche = (diff/(1000*60*60*24));
     document.getElementById("noches").innerHTML = ((diff/(1000*60*60*24))+1) + " dias y " + (diff/(1000*60*60*24)) + " Noches";
     // comprobar que selecciono fechas
     if ( fecha_entrada == "//" || fecha_salida == "//" ){
@@ -115,7 +117,7 @@ function ProcesarIdReserva(seleccionarHabitacion){
                 Suma = Suma + Precio[[data.habitacion._id]];
                 console.log(Suma);
                 // document.getElementById("Total_pagar").innerHTML = "$" + Suma;
-                document.getElementById("Total_pagar").innerHTML = "$" + Intl.NumberFormat('de-DE', {style: 'decimal'}).format(Suma);
+                document.getElementById("Total_pagar").innerHTML = "$" + Intl.NumberFormat('de-DE', {style: 'decimal'}).format(Suma*TotalNoche);
             });
     //
     fetch('http://127.0.0.1:5000/habitaciones/' + id)
