@@ -15,3 +15,12 @@ def validar_fecha(fecha: str) -> bool:
         return True
     except ValueError:
         return False
+
+
+# Valida que la puntuacion este entre 1 y 10.
+def validar_puntuacion(puntuacion: str) -> bool:
+    puntuacion_texto = str(puntuacion)
+    if puntuacion_texto.isnumeric():
+        return (int(puntuacion) >= 1 and int(puntuacion) <= 10)
+    else:
+        return False
