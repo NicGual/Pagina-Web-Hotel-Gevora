@@ -23,7 +23,7 @@
             <div class="row d-flex justify-content-center align-items-center" style="height: 500px;">
                 <div class=" reserva-body text-center mx-3">
                     <a href="/"><img class="logo" src="static/assets/Gevora_Hotel_Logo.svg"></a>
-                    <form class="reserva-form px-5 py-3 me-2" action="/reserva">
+                    <div class="reserva-form px-5 py-3 me-2">
                         <div class="row text-start align-self-center ">
                             <div class="col-5 ">
                                 <label for="fechaEntrada" class="reserva-label mb-2 text-capitalize">Fecha de entrada</label>
@@ -35,17 +35,17 @@
                                 <input type="date" class="form-control bg-light mt-0" id="fechaSalida"
                                     name="fecha_salida" placeholder="Fecha Salida" />
                             </div>
-                            <button class="btn reserva-boton col-2 mt-4" type="submit">Buscar</button>
+                            <button class="boton btn btn-lg col-2 mt-4" onclick="ProcesarFechas()">Buscar</button>
                         </div> 
-                    </form>
+                    </div>  <!-- </form>  -->
                 </div>
             </div>
         </div>
 
     </main>
-    <h2 class="text-center fs-1 mt-3">Habitaciones Disponibles para {{ current_user.nombre }}</h2>
-    <div class="reserva-resultados d-flex justify-content-center align-items-center">               
-        <div class="container w-75 m-3">  
+    <h2 id="user_title" class="visualizar text-center fs-1 mt-3">Habitaciones Disponibles para {{ current_user.nombre }}</h2>
+    <div id="separacion" class="visualizar reserva-resultados d-flex justify-content-center align-items-center">               
+        <div id="contenedor" class="visualizar container w-75 m-3">  
             {% for x in items["Habitaciones"] %}
             <div class="reserva-resultado card text-bg-light mb-5">
                 <div class="row m-4 g-0">
@@ -150,13 +150,14 @@
                             <h5 class="card-title fw-bold mb-4 fs-2">Detalles de la Reserva</h5>
                             <div class="d-block">
                                 <h2 class="fw-bold d-inline fs-5">Fecha de Ingreso </h2>
-                                <h3 class="d-inline fs-5 ms-1"> 22/07/2022</h3>
+                                <h3 id="f_ent" class="d-inline fs-5 ms-1"> dd/mm/yyyy</h3>
                             </div>
                             <div class="d-block">
                                 <h2 class="fw-bold d-inline fs-5">Fecha de Salida </h2>
-                                <h3 class="d-inline fs-5 ms-1"> 25/07/2022</h3>
+                                <h3 id="f_sal" class="d-inline fs-5 ms-1"> dd/mm/yyyy</h3>
                             </div>  
-                            <h6 class="card-subtitle mb-2 text-success">1 Habitacion, 3 Noches</h6>
+                            <h6 id="Conteo" class="card-subtitle mb-2 text-success">0 Habitacion</h6>
+                            <h6 id="noches" class="card-subtitle mb-2 text-success">0 Noches</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -165,10 +166,10 @@
                                 <p class="card-text fs-2 ">Total a Pagar</p>
                             </div>
                             <div class="d-flex justify-content-end "> 
-                                <h5 class="card-title fs-3 text-success text">$1.100.000</h5>
+                                <h5 id="Total_pagar" class="card-title fs-3 text-success text">$0</h5>
                             </div>  
                             <div class="d-flex justify-content-end">
-                                <button class="boton-pagar btn btn-lg">Pagar</button>  
+                                <button class="boton-pagar btn btn-lg" onclick="ProcesarPago()">Pagar</button>  
                             </div>                          
                         </div>                        
                     </div>
@@ -183,6 +184,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script src={{ url_for('static', filename='scripts/reservas.js') }}></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

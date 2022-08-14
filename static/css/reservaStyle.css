@@ -159,9 +159,13 @@ form .reserva-boton:hover{
     color: white;
 }
 
+.visualizar{
+    display: none;
+}
+
 .boton:hover {
 
-    background-color: #3A6BEB;
+    background-color: #eb3a3a;
     color: white;
 }
 .boton-pagar {

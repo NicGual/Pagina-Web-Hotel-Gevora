@@ -7,6 +7,7 @@ from babel.numbers import format_number, format_decimal, format_percent
 from flask_login import login_required, current_user
 from apis.API_Users import *
 from apis.API_Reservas import *
+from validaciones import *
 
 @app.route('/reserva')
 @login_required
@@ -16,12 +17,7 @@ def reserva():
         # res = habitaciones().get_lista()
         # ✅ llame al método .json() en el objeto de respuesta
         # print (request.json['fecha_entrada'])
-        datos = ""
         parsed = json.loads(res.text)
-        return render_template('reserva.html', items=parsed, formato_moneda=format_decimal, datos=datos)      
+        return render_template('reserva.html', items=parsed, formato_moneda=format_decimal)      
     else:
         return render_template('index.html')
-
-def logica():
-    web = requests.get('http://127.0.0.1:5000/reservas')
-    print (web.text)

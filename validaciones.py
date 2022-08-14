@@ -11,7 +11,7 @@ from datetime import datetime
 
 def validar_fecha(fecha: str) -> bool:
     try:
-        datetime.strptime(fecha, '%d-%m-%Y')
+        datetime.strptime(fecha, '%d/%m/%Y')
         return True
     except ValueError:
         return False
