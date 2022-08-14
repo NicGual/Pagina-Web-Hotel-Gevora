@@ -39,6 +39,9 @@ app.register_blueprint(SuperAdminUsers)
 #Rutas administrador
 app.register_blueprint(adminRouter)
 
+#ruta Mis reservas
+from routes.Admin_reserva import *
+
 # ruta Pagina 404
 from routes.Page_404 import *
 
