@@ -1,6 +1,7 @@
 from random import random
 from flask import Flask, render_template,Blueprint,request, Response
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash
 import Database.adminQueries as query
 import random, math
 
@@ -44,7 +45,9 @@ def crearUsuario():
         if usuario['tipoUsuario'] != 'usuario':
             status_code= Response(status=400)
             return status_code
-
+        contrasena = usuario['contrasena']
+        contrasena_hash = generate_password_hash(contrasena)
+        usuario['contrasena'] = contrasena_hash
         usuario['tipoUsuario'] = '3'
         print(usuario)
         usuario["id"]=random.randint(1,184467440737096000)
