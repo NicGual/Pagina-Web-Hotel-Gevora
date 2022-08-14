@@ -16,6 +16,29 @@
 </head>
 
 <body>
+
+    <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+          <form class="d-flex">
+            <p class="nav-item" ><p></p><Strong>{{ current_user.nombre }} &nbsp;</Strong></p>
+            {% if current_user.is_authenticated %}
+                            <!-- <li class="nav-item"><a href="/logout"><button class="btn btn-outline-danger" type="submit" style="font-family: Montserrat"><Strong>{{ current_user.nombre }}</Strong></button></a></li> -->
+                            <!-- <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesion: {{ current_user.nombre }}</a></li> -->
+                            <div class="dropdown text-end">
+                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <img src="{{ url_for('static', filename='assets/user.svg') }}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                </a>
+                                <ul class="dropdown-menu text-small">
+                                    <li><a class="dropdown-item" href="/Mis_reservas">Mis Reservas</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+                                </ul>
+                              </div>
+                        {% endif %}
+          </form>
+        </div>
+      </nav>
+      
     <input id="usuario_activo" name="user_activo" type="hidden" value= "{{ current_user.id }}">
     <main class="reserva-header d-flex justify-content-center align-items-center">
         <div class="container">
