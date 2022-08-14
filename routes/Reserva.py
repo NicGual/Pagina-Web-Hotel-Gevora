@@ -16,7 +16,12 @@ def reserva():
         # res = habitaciones().get_lista()
         # ✅ llame al método .json() en el objeto de respuesta
         # print (request.json['fecha_entrada'])
+        datos = ""
         parsed = json.loads(res.text)
-        return render_template('reserva.html', items=parsed, formato_moneda=format_decimal)
+        return render_template('reserva.html', items=parsed, formato_moneda=format_decimal, datos=datos)      
     else:
         return render_template('index.html')
+
+def logica():
+    web = requests.get('http://127.0.0.1:5000/reservas')
+    print (web.text)

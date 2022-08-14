@@ -16,13 +16,14 @@
 </head>
 
 <body>
+    <input id="usuario_activo" name="user_activo" type="hidden" value= "{{ current_user.id }}">
     <main class="reserva-header d-flex justify-content-center align-items-center">
         <div class="container">
 
             <div class="row d-flex justify-content-center align-items-center" style="height: 500px;">
                 <div class=" reserva-body text-center mx-3">
                     <a href="/"><img class="logo" src="static/assets/Gevora_Hotel_Logo.svg"></a>
-                    <form class="reserva-form px-5 py-3 me-2" action="/reserva" method="post">
+                    <form class="reserva-form px-5 py-3 me-2" action="/reserva">
                         <div class="row text-start align-self-center ">
                             <div class="col-5 ">
                                 <label for="fechaEntrada" class="reserva-label mb-2 text-capitalize">Fecha de entrada</label>
@@ -60,7 +61,7 @@
                             <h5 class="card-title fs-2 text-success">${{ formato_moneda(x["precio"], locale='de_DE') }}</h5>
                         </div>
                         <div class="d-block justify-content-center">
-                            <a href="#" class="boton btn btn-lg">Seleccionar</a>
+                            <button id = "{{x["_id"]|string}}" class="boton_sel boton btn btn-lg" onclick="ProcesarIdReserva(this)">Seleccionar</button>
                         </div>
 
                     </div>
@@ -181,6 +182,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src={{ url_for('static', filename='scripts/reservas.js') }}></script>
 </body>
 
 </html>

@@ -79,7 +79,7 @@ class habitacion_id(Resource):
             result = None
         try:
             if  result != None:
-                return jsonify({'usuario':  result, 'mensaje': "Habitacion encontrada.", 'exito': True})
+                return jsonify({'habitacion':  result, 'mensaje': "Habitacion encontrada.", 'exito': True})
             else:
                 return jsonify({'mensaje': "Habitacion no encontrada.", 'exito': False})
         except Exception as ex:

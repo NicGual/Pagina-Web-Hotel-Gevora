@@ -39,7 +39,7 @@ class calificaciones(Resource):
         try:
             if (validar_puntuacion(puntuacion)):
                 query = conn.execute("insert into Calificaciones values(null,'{0}','{1}','{2}','{3}'\
-                             )".format(user_id, habitacion_id, puntuacion, comentario))
+                             )".format(habitacion_id, user_id, puntuacion, comentario))
                 return jsonify({'mensaje': 'Registro exitoso', 'exito': True})
             else:
                 return jsonify({'mensaje': "La puntuacion debe ser un numero entre 1 y 10.", 'exito': False})
