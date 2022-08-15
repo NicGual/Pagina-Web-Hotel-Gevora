@@ -2,7 +2,7 @@ from random import random
 from flask import Flask, render_template,Blueprint,request, Response
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash
-import Database.adminQueries as query
+import adminQueries as query
 import random, math
 
 adminRouter =Blueprint('administrador', __name__)
