@@ -148,7 +148,7 @@ function ProcesarIdReserva(seleccionarHabitacion){
 
 function ProcesarPago(){
     console.log("pague");
-    for (var i = 0; i < Size_vector ; i++) {
+    for (var i = 0; i < (Size_vector+1) ; i++) {
         console.log("for")
         console.log(Vector_post[i])
         if (Vector_post[i] != null){
