@@ -1,7 +1,7 @@
 from flask import Flask, render_template, send_from_directory,Blueprint
 import sqlite3
 from  sqlite3 import Error
-import Database.adminQueries as admin
+import adminQueries as admin
 
 staticRouter =Blueprint('static', __name__)
 
