@@ -5,7 +5,9 @@ import os.path
 def sql_connection():
     try:
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
         db_path = os.path.join(BASE_DIR, "Database/HotelGevora.db")
+
         print(db_path)
         con = sqlite3.connect(db_path)
         return con
