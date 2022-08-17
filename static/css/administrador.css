@@ -70,14 +70,13 @@ h2{
     
 }
 .search input{
-    width: 74%;
+    width: 78%;
     border: solid 3px #287cff;
     background-color: #fff; 
     border-radius: 40px;
-    /* border-top-right-radius: 40px !important;
-    border-bottom-right-radius: 40px !important; */
+    border-top-right-radius: 40px !important;
+    border-bottom-right-radius: 40px !important;
     padding: 9px 29px 8px 33px;
-    border-right: none;
 }
 #agregar-usuario{
     margin-left: 15px;
@@ -218,19 +217,6 @@ i{
 }
 .outCont>h3{
     color: white;
-}
-
-#boton-busqueda{
-    background: white;
-    font-size: 20px;
-    border: none;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border: solid 3px #287cff;
-    border-left: none;
-    background: white;
-    font-size: 20px;
-    padding-right: 12px; 
 }
 
 
