@@ -1,5 +1,9 @@
 <div class="input-group search">
+    <!-- <input type="form-control" placeholder="Buscar habitacion por ID" /> -->
     <input type="form-control" placeholder="Buscar habitacion por ID" />
+    <button id="boton-busqueda" class="d-flex align-items-center" type="button">
+        <i class="fa fa-search"></i>
+    </button>
     <button type="button" id="agregar-habitacion" class="btn btn-success form-control d-flex justify-content-center"
         data-bs-toggle="modal" data-bs-target="#ventanaModal">
         <div class="d-flex ">
@@ -54,14 +58,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitulo">Editar Habitacion</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="gestionHabitaciones()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="gestionHabitaciones()"></button>
             </div>
             <div class="modal-body">
                 <form class="row" id="editarHabitacionForm" action="#" method="post">
                     <div class="col-12 mb-3">
                         <label for="descripcionHabitacion" class="form-label">Descripción</label>
-                        <textarea type="text" class="form-control" name="descripcion"
-                            id="editarDescripcion"></textarea>
+                        <textarea type="text" class="form-control" name="descripcion" id="editarDescripcion"></textarea>
                     </div>
                     <div class="col-6 mb-3">
                         <label for="editarPrecio" class="form-label">Precio</label>
@@ -74,7 +78,7 @@
 
 
                     <div class="modal-footer">
-                        <button type="submit" id="editarHabitacionBoton" class="btn btn-primary">Guardar 
+                        <button type="submit" id="editarHabitacionBoton" class="btn btn-primary">Guardar
                             cambios
                         </button>
                     </div>
@@ -101,13 +105,13 @@
             {% if habitaciones|length > 0 %}
             {% for i in habitaciones %}
             <tr id="{{i[0]}}">
-                <th id="editarHabitacion" onclick="editarHabitacion('{{i[0]}}')" data-bs-target="#modalEditarHabitacion" data-bs-toggle="modal">
-                    <i class="fa fa-pencil"
-                        aria-hidden="true"></i>
-                    </th>
-                <th scope="row" class="nombre" id="{{"habitacion"+i[0]|string}}">{{i[0]}}</th>
-                <td class="tdDes" id="{{"descripcion"+i[0]|string}}">{{i[3]}}</td>
-                <td id="{{"precio"+i[0]|string}}">{{i[2]}}</td>
+                <th id="editarHabitacion" onclick="editarHabitacion('{{i[0]}}')" data-bs-target="#modalEditarHabitacion"
+                    data-bs-toggle="modal">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </th>
+                <th scope="row" class="nombre" id="{{" habitacion"+i[0]|string}}">{{i[0]}}</th>
+                <td class="tdDes" id="{{" descripcion"+i[0]|string}}">{{i[3]}}</td>
+                <td id="{{" precio"+i[0]|string}}">{{i[2]}}</td>
                 <td>
                     {% if i[1] == 'ocupado' %}
                     <h3 class="btn btn-secondary form-control changeStatus" id="{{i[0]}}">Ocupado</h3>
@@ -124,21 +128,22 @@
 </div>
 <nav aria-label="Page navigation example" class="d-flex justify-content-center" id="paginacion">
     <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" id="paginaAnterior" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      {% for pagina in range(numeroPaginas) %}
-      <li class="page-item" id="pagina{{pagina + 1}}"><a class="page-link" name="pagina" href="#">{{pagina + 1}}</a></li>
-      {% endfor %}
-      <li class="page-item">
-        <a class="page-link" id="paginaSiguiente" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
+        <li class="page-item">
+            <a class="page-link" id="paginaAnterior" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% for pagina in range(numeroPaginas) %}
+        <li class="page-item" id="pagina{{pagina + 1}}"><a class="page-link" name="pagina" href="#">{{pagina + 1}}</a>
+        </li>
+        {% endfor %}
+        <li class="page-item">
+            <a class="page-link" id="paginaSiguiente" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
     </ul>
-  </nav>
+</nav>
 
 <div class="modal" tabindex="-1" id='changeStatusHab'>
     <div class="modal-dialog">

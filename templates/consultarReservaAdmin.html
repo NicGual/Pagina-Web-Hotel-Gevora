@@ -1,0 +1,56 @@
+<div class="titulo d-flex">
+    <i class="fa fa-arrow-left" aria-hidden="true" id="arrow" onclick="gestionUsuarios(1)"></i>
+    <h2>Reservas del Usuario</h2>
+</div>
+<div class="container mt-3" id="contenedorAlerta">
+</div>
+<div class="container">
+    {% if reservas|length > 0 %}
+    <div class="tableConta ">
+        <table class="table  table-hover ">
+            <thead>
+                <tr>
+                    <th scope="col-2">Edit</th>
+                    <th scope="col-2">id habitacion</th>
+                    <th scope="col-4">Fecha de Llegada</th>
+                    <th scope="col-4">Fecha de Salida</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                {% for i in reservas %}
+                <tr id="{{i[0]}}">
+                    <th class="">
+                        <i class="editarReserva fa fa-pencil" aria-hidden="true"></i>
+                    </th>
+                    <td scope="row" class="idreserva" id="{{" habitacion"+i[0]|string}}">{{i[2]}}</td>
+                    <td class="llegada" id="{{" fechaLlegada"+i[0]|string}}">{{i[3]}}</td>
+                    <td class="salida" id="{{" fechaSalida"+i[0]|string}}">{{i[4]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center" id="paginacion">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" id="paginaAnterior" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% for pagina in range(numeroPaginas) %}
+            <li class="page-item" id="pagina{{pagina + 1}}"><a class="page-link" name="pagina" href="#">{{pagina +
+                    1}}</a></li>
+            {% endfor %}
+            <li class="page-item">
+                <a class="page-link" id="paginaSiguiente" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% else %}
+    <div>el usuario no tiene ninguna reserva</div>
+    {% endif %}
+</div>

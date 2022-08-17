@@ -1,0 +1,22 @@
+<div class="titulo d-flex">
+    <i class="fa fa-arrow-left" aria-hidden="true" id="arrow" onclick="verReservas('{{idUsuario}}', 1)"></i>
+    <h2>Editar Reserva</h2>
+</div>
+<div class="container mt-3" id="contenedorAlerta">
+</div>
+<form id="editarReservaForm">
+    <div class="modificar">
+        <h3 class="datos">Datos</h3>
+        <div class="d-flex" id="dataCont">
+            <div class="campo-nombre">
+                <h3>Fecha de Llegada</h3>
+                <input id="fechaLlegada" class="input-editar-usuario" type="date"  value="{{fechaLlegada}}">
+            </div>
+            <div class="campo-correo">
+                <h3>Fecha de Salida</h3>
+                <input id="fechaSalida" class="input-editar-usuario" type="date" value="{{fechaSalida}}">
+            </div>
+        </div>
+    </div>
+    <button class="guardar" type="submit" id="guardarReserva">Guardar</button>
+</form>
