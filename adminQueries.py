@@ -4,12 +4,16 @@ import os.path
 
 def sql_connection():
     try:
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-        db_path = os.path.join(BASE_DIR, "Database/HotelGevora.db")
+        # db_path = os.path.join(BASE_DIR, "Database/HotelGevora.db")
 
-        print(db_path)
-        con = sqlite3.connect(db_path)
+        # print(db_path)
+        # con = sqlite3.connect(db_path)
+        # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        # db_path = os.path.join(BASE_DIR, "HotelGevora.db")
+        # print(db_path)
+        con = sqlite3.connect("Database/HotelGevora.db")
         return con
     except Error:
         print(Error)
@@ -117,5 +121,45 @@ def sql_edit_estado_habitacion(id, estado):
     cursorObj.execute(strsql)
     con.commit()
     con.close()
+
+#controladores editar reserva
+def sql_count_reservas(id):
+    strsql = f"SELECT count(*) FROM Reserva WHERE user_id={str(id)} ;"
+    con = sql_connection()
+    cursorObj = con.cursor()
+    countFetch =cursorObj.execute(strsql).fetchone()
+
+    if countFetch is None:
+        count = 0
+        return count 
     
+    count = countFetch[0]
+    return count
+
+
+def sql_list_reserva(id, pagina, resultados_pagina):
+    offset = (int(pagina)-1)*resultados_pagina
+    strsql = f"SELECT * FROM Reserva WHERE user_id ={str(id)}  LIMIT {resultados_pagina} OFFSET {offset};"
+    con = sql_connection()
+    cursorObj = con.cursor()
+    cursorObj.execute(strsql)
+    reservas = cursorObj.fetchall()
+    return reservas 
+
+def get_specific_reserva(id):
+    strsql = "SELECT * FROM Reserva WHERE _id="+str(id)+";"
+    con = sql_connection()
+    cursorObj = con.cursor()
+    cursorObj.execute(strsql)
+    reserva = cursorObj.fetchall()
+    return reserva
+
+def sql_edit_reserva(id, fecha_entrada, fecha_salida):
+    strsql = "UPDATE Reserva SET  fecha_entrada = '"+fecha_entrada+"', fecha_salida = '"+fecha_salida+"' WHERE _id = "+str(id)+";"
+    print(strsql)
+    con = sql_connection()
+    cursorObj = con.cursor()
+    cursorObj.execute(strsql)
+    con.commit()
+    con.close()
         

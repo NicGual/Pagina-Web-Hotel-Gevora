@@ -26,6 +26,17 @@ function agregarNotificacion(id, mensaje, tipo) {
         `<div class='alert alert-${tipo} alert-dismissible fade show' id='alert' role='alert'> ${mensaje} <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>`)
 }
 
+function urlPaginasReservas(f,id) {
+    document.getElementsByName("pagina").forEach(
+        (element, index) => element.addEventListener("click",
+            function (event) {
+                event.preventDefault()
+                f(id, index + 1)
+                window.localStorage.setItem('paginaActualReservas', index + 1)
+            }
+        ))
+}
+
 async function fetchContent(url) {
     document.getElementById("ventanaContenido").remove()
     try {
@@ -100,6 +111,7 @@ async function fetchUsuarios(pagina) {
             verReservas(id,1)
         });
     });
+    
 
 
 }
