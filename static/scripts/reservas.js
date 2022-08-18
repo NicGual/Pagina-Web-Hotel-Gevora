@@ -47,7 +47,7 @@ function ProcesarFechas(){
 
 function ProcesarIdReserva(seleccionarHabitacion){
     // fetch('http://127.0.0.1:5000/habitaciones')
-    fetch('habitaciones')
+    fetch('habitaciones') //pythonanywhere
             .then(response => response.json())
             .then(data => {
                 const json = (data);
@@ -80,7 +80,7 @@ function ProcesarIdReserva(seleccionarHabitacion){
 
     //conteo Habitacion
     // fetch('http://127.0.0.1:5000/habitaciones/' + id)
-    fetch('habitaciones/' + id)
+    fetch('habitaciones/' + id) //pythonanywhere
             .then(response => response.json())
             .then(data => {
                 if (estado_button == 1){
@@ -104,7 +104,7 @@ function ProcesarIdReserva(seleccionarHabitacion){
 
     // precio Total
     // fetch('http://127.0.0.1:5000/habitaciones/' + id)
-    fetch('habitaciones/' + id)
+    fetch('habitaciones/' + id) //pythonanywhere
             .then(response => response.json())
             .then(data => {
                 if (estado_button == 1){
@@ -124,7 +124,7 @@ function ProcesarIdReserva(seleccionarHabitacion){
             });
     //
     // fetch('http://127.0.0.1:5000/habitaciones/' + id)
-    fetch('habitaciones/' + id)
+    fetch('habitaciones/' + id) //pythonanywhere
             .then(response => response.json())
             .then(data => {
                 if (estado_button == 1){
@@ -158,7 +158,7 @@ function ProcesarPago(){
         if (Vector_post[i] != null){
             console.log("if")
             // fetch('http://127.0.0.1:5000/reservas', {
-            fetch('reservas', {
+            fetch('reservas', { //pythonanywhere
                 method: 'POST',
                 body: JSON.stringify(Vector_post[i]),
                 headers: {
