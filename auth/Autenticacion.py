@@ -80,25 +80,67 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-# Ruta para registrar Nuevo usuario
+# # Ruta para registrar Nuevo usuario
+# @app.route('/registro', methods=['GET', 'POST'])
+# def registro():
+#     if request.method == 'POST':
+#         url = "http://127.0.0.1:5000/users"
+#         password1=request.form['password']
+#         password2=request.form['password2']
+#         usuario = {
+#             "nombre" : request.form['nombre'],
+#             "correo" : request.form['email'],
+#             "contrasena" : request.form['password'],
+#             "rol" : "3"
+#             }
+#         if (password1==password2):
+#             respuesta = requests.post(url, json=usuario)
+#             flash(respuesta.json()["mensaje"])
+#             return render_template('registro.html')
+#         else:
+#             flash('Las contraseñas no coinciden')
+#             return render_template('registro.html')      
+#     else:
+#         return render_template('registro.html')
+
+# para desplegar en pythonanywhere
+# Metodo de registro usando la funcion de la api de usuarios
+# importamos la API
+from apis.API_Users import *
+
+# Ruta para registrar Nuevo usuario insertando los datos directamente a la base de datos
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
     if request.method == 'POST':
-        url = "http://127.0.0.1:5000/users"
         password1=request.form['password']
         password2=request.form['password2']
-        usuario = {
-            "nombre" : request.form['nombre'],
-            "correo" : request.form['email'],
-            "contrasena" : request.form['password'],
-            "rol" : "3"
-            }
+        conn = db_connect.connect()
+        nombre = request.form['nombre']
+        correo = request.form['email']
+        contrasena = request.form['password']
+        contrasena_hash = generate_password_hash(contrasena)
+        rol = '3'
         if (password1==password2):
-            respuesta = requests.post(url, json=usuario)
-            flash(respuesta.json()["mensaje"])
-            return render_template('registro.html')
+                if (validar_nombre(nombre)):
+                    try:
+                        if leer_usuario_correo_bd(correo) != None:
+                            flash("Correo ya existe, no se puede duplicar.")
+                            return render_template('registro.html')
+                        else:
+                            query = conn.execute("insert into usuarios values(null,'{0}','{1}','{2}','{3}' \
+                                    )".format(nombre,correo,
+                                            contrasena_hash, rol))
+                            flash('Registro exitoso')
+                            return render_template('registro.html')
+                    except Exception as ex:
+                        flash("Error")
+                        return render_template('registro.html')
+                else:
+                    flash("Parámetros inválidos...")
+                return render_template('registro.html')
         else:
             flash('Las contraseñas no coinciden')
             return render_template('registro.html')      
     else:
         return render_template('registro.html')
+        
