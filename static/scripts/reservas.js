@@ -46,7 +46,8 @@ function ProcesarFechas(){
 }
 
 function ProcesarIdReserva(seleccionarHabitacion){
-    fetch('http://127.0.0.1:5000/habitaciones')
+    // fetch('http://127.0.0.1:5000/habitaciones')
+    fetch('habitaciones')
             .then(response => response.json())
             .then(data => {
                 const json = (data);
@@ -70,7 +71,7 @@ function ProcesarIdReserva(seleccionarHabitacion){
     }
 
     console.log("estado de boton: " + estado_button)
-         
+
     console.log("id de habitacion: " + id);
     console.log("usuario activo es:" + usuarioActivo);
     // fetch('http://127.0.0.1:5000/habitaciones/' + id)
@@ -78,7 +79,8 @@ function ProcesarIdReserva(seleccionarHabitacion){
     //     .then(data => console.log(data));
 
     //conteo Habitacion
-    fetch('http://127.0.0.1:5000/habitaciones/' + id)
+    // fetch('http://127.0.0.1:5000/habitaciones/' + id)
+    fetch('habitaciones/' + id)
             .then(response => response.json())
             .then(data => {
                 if (estado_button == 1){
@@ -101,7 +103,8 @@ function ProcesarIdReserva(seleccionarHabitacion){
     //
 
     // precio Total
-    fetch('http://127.0.0.1:5000/habitaciones/' + id)
+    // fetch('http://127.0.0.1:5000/habitaciones/' + id)
+    fetch('habitaciones/' + id)
             .then(response => response.json())
             .then(data => {
                 if (estado_button == 1){
@@ -120,7 +123,8 @@ function ProcesarIdReserva(seleccionarHabitacion){
                 document.getElementById("Total_pagar").innerHTML = "$" + Intl.NumberFormat('de-DE', {style: 'decimal'}).format(Suma*TotalNoche);
             });
     //
-    fetch('http://127.0.0.1:5000/habitaciones/' + id)
+    // fetch('http://127.0.0.1:5000/habitaciones/' + id)
+    fetch('habitaciones/' + id)
             .then(response => response.json())
             .then(data => {
                 if (estado_button == 1){
@@ -135,12 +139,12 @@ function ProcesarIdReserva(seleccionarHabitacion){
                     Vector[data.habitacion._id] = Datos;
                     Vector_post[data.habitacion._id] = Vector[data.habitacion._id];
                     console.log(Datos);
-                } 
+                }
             });
     // console.log(Vector);
-    
-     
-     
+
+
+
     // var filtrados = Vector.filter(valor != null);
     // console.log(filtrados)
 }
@@ -153,18 +157,19 @@ function ProcesarPago(){
         console.log(Vector_post[i])
         if (Vector_post[i] != null){
             console.log("if")
-            fetch('http://127.0.0.1:5000/reservas', {
+            // fetch('http://127.0.0.1:5000/reservas', {
+            fetch('reservas', {
                 method: 'POST',
                 body: JSON.stringify(Vector_post[i]),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 }
             })
-            .then(function(response){ 
+            .then(function(response){
                 return response.json()})
                 .then(function(data)
                 {console.log(data)
-                }).catch(error => console.error('Error:', error)); 
+                }).catch(error => console.error('Error:', error));
                 // console.log(Vector_post[i]);
             } else { console.log("else") }
         }
@@ -176,7 +181,7 @@ function ProcesarPago(){
           }).then((result) => {
             if (result.isConfirmed) {
                 location.reload()
-            } 
+            }
           })
-          
+
     }
