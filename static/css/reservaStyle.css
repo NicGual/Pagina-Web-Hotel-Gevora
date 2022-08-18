@@ -173,3 +173,9 @@ form .reserva-boton:hover{
     background-color: #F1A501;
     color: white;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #D84945;
+}
