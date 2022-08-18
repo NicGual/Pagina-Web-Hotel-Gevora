@@ -26,6 +26,17 @@ function agregarNotificacion(id, mensaje, tipo) {
         `<div class='alert alert-${tipo} alert-dismissible fade show' id='alert' role='alert'> ${mensaje} <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>`)
 }
 
+function urlPaginasReservas(f,id) {
+    document.getElementsByName("pagina").forEach(
+        (element, index) => element.addEventListener("click",
+            function (event) {
+                event.preventDefault()
+                f(id, index + 1)
+                window.localStorage.setItem('paginaActualReservas', index + 1)
+            }
+        ))
+}
+
 async function fetchContent(url) {
     document.getElementById("ventanaContenido").remove()
     try {
@@ -92,6 +103,15 @@ async function fetchUsuarios(pagina) {
             editarUsuario(id)
         });
     });
+    document.querySelectorAll(".reservaEdit").forEach(element => {
+        element.addEventListener("click", e => {
+            const idRow = e.target.getAttribute("id"); 
+            // id= idRow.split('editar')
+            id = idRow.slice(6)
+            verReservas(id,1)
+        });
+    });
+    
 
 
 }
@@ -185,7 +205,88 @@ async function guardarUsuario(url) {
         agregarNotificacion("contenedorAlerta","Revise los campos ingresados, no se aceptan campos vacios", "danger")
     }
 }
+// editar reservas----------------------------------------------------------------------------------------------------
 
+async function verReservas(id, pagina) {
+    window.localStorage.setItem('paginaActualReservas', pagina)
+    url =  'http://127.0.0.1:5000/administrador/ver-reservas/' + id + '/'+ pagina
+    await fetchContent(url)
+    urlPaginasReservas(verReservas, id)
+    document.querySelectorAll(".editarReserva").forEach(element =>
+        element.addEventListener('click', e => {
+            padre = e.target.parentElement
+            idReserva = padre.parentElement.getAttribute("id")
+            editarReserva(idReserva)           
+        }))
+    document.getElementById("paginaAnterior").addEventListener('click', function (event) {
+        event.preventDefault()
+        verReservas(id, paginaActual - 1)
+        window.localStorage.setItem('paginaActual', paginaActual - 1)
+    })
+    document.getElementById("paginaSiguiente").addEventListener('click', function (event) {
+        event.preventDefault()
+        verReservas(id, Number.parseInt(paginaActual) + 1)
+        window.localStorage.setItem('paginaActual', Number.parseInt(paginaActual) + 1)
+    })
+    paginaActual = window.localStorage.getItem('paginaActualReservas')
+    document.getElementById("pagina" + paginaActual).classList.add("active")
+    console.log(url)
+}
+
+async function editarReserva (id) {
+    url = 'http://127.0.0.1:5000/administrador/editar-reservas/' + id
+    await fetchContent(url)
+    document.getElementById("guardarReserva").addEventListener("click", (e) => {
+        e.preventDefault()
+        guardarReserva(id)
+    })
+    console.log(id)
+
+}
+
+async function guardarReserva (id) {
+    function formatearFecha(a) {
+        b = a.split("-")
+        c = b.reverse()
+        d = c.join("/")
+        return d
+    }
+    url = 'http://127.0.0.1:5000/administrador/editar-reservas/' + id
+    fechaLlegada = document.getElementById("fechaLlegada").value
+    fechaSalida = document.getElementById("fechaSalida").value 
+    fechaLlegada = formatearFecha(fechaLlegada)
+    fechaSalida = formatearFecha(fechaSalida)
+
+    datos = {
+        "fechaLlegada": fechaLlegada,
+        "fechaSalida": fechaSalida
+    }
+
+    requestOptions = {
+        method: 'UPDATE',
+        body: JSON.stringify(datos),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    if (!(fechaLlegada == '' || fechaSalida == "")) {
+
+        try {
+            let resultado = await fetch(url, requestOptions)
+
+            if (resultado.ok) {
+                agregarNotificacion("contenedorAlerta","Reserva actualizada exitosamente", "success")
+            }
+        }
+        catch {
+            agregarNotificacion("contenedorAlerta","Algo salio mal, intentelo nuevamente","danger")
+        }
+    }
+    else {
+        agregarNotificacion("contenedorAlerta","Revise los campos ingresados, no se aceptan campos vacios", "danger")
+    }
+}
 
 
 
