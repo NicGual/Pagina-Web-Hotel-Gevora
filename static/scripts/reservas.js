@@ -12,7 +12,6 @@ var TotalConteo = 0;
 var Ultimo_precio;
 var Size_vector;
 var TotalNoche;
-var Size_vectorR;
 
 const seleccionarHabitacion = document.getElementsByClassName("boton_sel")
 
@@ -47,16 +46,6 @@ function ProcesarFechas(){
         document.getElementById("contenedor").style.display = "block";
     }
     // Eliminar habitaciones ya reservadas de la lista
-    // fetch('http://127.0.0.1:5000/reservas')
-    fetch('reservas') //pythonanywhere
-            .then(response => response.json())
-            .then(data => {
-                const json = (data);
-                const tamano_vector = json;
-                Size_vectorR = Object.keys(tamano_vector.Reservas).length;
-                // console.log(Size_vector);
-                // console.log(Object.keys(json.Habitaciones).length);
-    });
     // fetch('http://127.0.0.1:5000/reservas')
     fetch('reservas') //pythonanywhere
         .then(response => response.json())
