@@ -12,6 +12,7 @@ var TotalConteo = 0;
 var Ultimo_precio;
 var Size_vector;
 var TotalNoche;
+var Size_vectorR;
 
 const seleccionarHabitacion = document.getElementsByClassName("boton_sel")
 
@@ -20,12 +21,14 @@ function ProcesarFechas(){
     const date = f_entrada;
     const [year, month, day] = date.split('-');
     fecha_entrada = [day, month, year].join('/');
+    var f1_ent = new Date(year, month-1, day); 
     // console.log(fecha_entrada);
     document.getElementById("f_ent").innerHTML = fecha_entrada;
     const f_salida = document.getElementById("fechaSalida").value
     const date_out = f_salida;
     const [ano, mes, dia] = date_out.split('-');
     fecha_salida = [dia, mes, ano].join('/');
+    var f2_sal = new Date(ano, mes-1, dia);
     // console.log(fecha_salida);
     document.getElementById("f_sal").innerHTML = fecha_salida;
     // procesar fechas
@@ -43,6 +46,39 @@ function ProcesarFechas(){
         document.getElementById("separacion").style.display = "block";
         document.getElementById("contenedor").style.display = "block";
     }
+    // Eliminar habitaciones ya reservadas de la lista
+    // fetch('http://127.0.0.1:5000/reservas')
+    fetch('reservas') //pythonanywhere
+            .then(response => response.json())
+            .then(data => {
+                const json = (data);
+                const tamano_vector = json;
+                Size_vectorR = Object.keys(tamano_vector.Reservas).length;
+                // console.log(Size_vector);
+                // console.log(Object.keys(json.Habitaciones).length);
+    });
+    // fetch('http://127.0.0.1:5000/reservas')
+    fetch('reservas') //pythonanywhere
+        .then(response => response.json())
+        .then(data => {
+            const json = (data.Reservas);
+            for (x in json) {
+                const date = json[x].fecha_entrada
+                const [day, month, year] = date.split('/')
+                var fecha_entrada_bd = new Date(year, month-1, day)
+                const date_out = json[x].fecha_salida
+                const [dia, mes, ano] = date_out.split('/')
+                var fecha_salida_bd = new Date(ano, mes-1, dia)
+                if (((f1_ent.getTime() <= fecha_salida_bd.getTime())) && (f2_sal.getTime() >= fecha_entrada_bd.getTime())){
+                    document.getElementById("hab" + json[x].habitacion_id).remove()
+                    console.log("omitido")
+                }
+                else{
+                    console.log(json[x].habitacion_id)
+                }
+                }  
+            });
+                
 }
 
 function ProcesarIdReserva(seleccionarHabitacion){

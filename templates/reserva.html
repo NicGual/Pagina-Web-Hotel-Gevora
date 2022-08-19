@@ -70,12 +70,12 @@
     <div id="separacion" class="visualizar reserva-resultados d-flex justify-content-center align-items-center">               
         <div id="contenedor" class="visualizar container w-75 m-3">  
             {% for x in items["Habitaciones"] %}
-            <div class="reserva-resultado card text-bg-light mb-5">
+            <div id= "hab{{x["_id"]|string}}" class="reserva-resultado card text-bg-light mb-5">
                 <div class="row m-4 g-0">
                     <div class=" col-md-6 ">
                         <div class="card-body">
                             <h5 class="card-title fw-bold mb-4">Habitación {{ x["_id"] }}</h5>
-                            <p class="habitacion-body" style="width: 28rem;">{{ x["descripcion"] }}</p>
+                            <p class="habitacion-body">{{ x["descripcion"] }}</p>
                         </div>
                     </div>
                     <div class=" col-md-6 d-flex align-items-center">
